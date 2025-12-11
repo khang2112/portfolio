@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Nguyễn Dương Khang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* Màu xanh đậm giống áo vest */
+            --secondary-color: #3498db; /* Màu xanh dương nhạt cho tiêu đề */
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --sidebar-width: 300px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #eef1f5;
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .resume-container {
+            display: flex;
+            background: white;
+            width: 900px;
+            max-width: 100%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* Cột bên trái (Sidebar) */
+        .left-col {
+            width: var(--sidebar-width);
+            background-color: #fff;
+            padding: 30px;
+            border-right: 1px solid #eee;
+            text-align: left;
+        }
+
+        .profile-img-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+        }
+
+        .job-title {
+            background-color: #e3f2fd;
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            text-align: center;
+            width: 100%;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            font-size: 18px;
+            color: var(--secondary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+        }
+
+        .contact-info p, .skills ul li, .cert-info {
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            color: #555;
+        }
+
+        .contact-info i {
+            width: 25px;
+            color: var(--secondary-color);
+        }
+
+        .skills ul {
+            list-style: none;
+        }
+
+        .skills ul li {
+            background: #f8f9fa;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        /* Cột bên phải (Nội dung chính) */
+        .right-col {
+            flex: 1;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .content-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .content-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .content-box h3 i {
+            margin-right: 10px;
+        }
+
+        .content-text {
+            font-size: 15px;
+            color: #444;
+            text-align: justify;
+        }
+        
+        .school-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            margin-top: 5px;
+        }
+
+        .time-period {
+            font-style: italic;
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 5px;
+            display: block;
+        }
+
+        /* Responsive cho điện thoại */
+        @media (max-width: 768px) {
+            .resume-container {
+                flex-direction: column;
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+            }
+            .left-col, .right-col {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+                /* --- BẮT ĐẦU PHẦN CODE HIỆU ỨNG MỚI THÊM --- */
+
+        /* 1. Hiệu ứng phóng to và xoay nhẹ ảnh đại diện */
+        .profile-img {
+            transition: all 0.5s ease; /* Tạo độ mượt khi chuyển động */
+        }
+        .profile-img:hover {
+            transform: scale(1.1) rotate(5deg); /* Phóng to 1.1 lần và xoay 5 độ */
+            border-color: #1a1717; /* Đổi viền sang màu đỏ cam */
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5); /* Phát sáng nhẹ */
+        }
+
+        /* 2. Hiệu ứng cho các thẻ Kỹ năng (Skills) - Đổi màu khi chạm vào */
+        .skills ul li {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .skills ul li:hover {
+            background-color: var(--secondary-color); /* Nền đổi thành màu xanh chủ đạo */
+            color: white; /* Chữ đổi thành màu trắng */
+            transform: translateX(10px); /* Dịch chuyển sang phải 1 chút */
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* 3. Hiệu ứng nổi 3D cho các khung nội dung (Kinh nghiệm, Học vấn...) */
+        .content-box {
+            transition: all 0.3s ease;
+        }
+        .content-box:hover {
+            transform: translateY(-5px); /* Nhấc khung lên trên 5px */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Đổ bóng đậm hơn tạo cảm giác nổi */
+            border-left: 5px solid var(--secondary-color); /* Thêm viền trái tạo điểm nhấn */
+        }
+
+        /* 4. Hiệu ứng cho icon liên hệ */
+        .contact-info p {
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .contact-info p:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        .contact-info p:hover i {
+            transform: scale(1.3); /* Phóng to icon */
+        }
+        
+        /* --- KẾT THÚC PHẦN CODE HIỆU ỨNG --- */
+        /* Code chỉnh link email và số điện thoại */
+.contact-link {
+    text-decoration: none; /* Bỏ gạch chân mặc định */
+    color: inherit; /* Lấy màu chữ giống như văn bản xung quanh */
+    transition: 0.3s;
+}
+
+.contact-link:hover {
+    color: var(--secondary-color); /* Đổi màu xanh khi di chuột vào */
+    text-decoration: underline; /* Hiện gạch chân khi di chuột */
+}
+    </style>
+</head>
+<body>
+
+    <div class="resume-container">
+        <div class="left-col">
+            <div class="profile-img-container">
+                <img src="cv.jpg" alt="Nguyen Duong Khang" class="profile-img">
+            </div>
+            
+            <div class="job-title">Intern IT</div>
+            <h1 class="name">Nguyễn Dương Khang</h1>
+
+            <div class="section-title">
+                <i class="fas fa-address-book"></i> Thông Tin Liên Hệ
+            </div>
+            <div class="contact-info">
+                <p><i class="far fa-calendar-alt"></i> 21/12/2006</p>
+                <p>
+    <i class="far fa-envelope"></i> 
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nguyenduongkhang.work@gmail.com" target="_blank" class="contact-link">nguyenduongkhang.work@gmail.com</a>
+                </p>
+                <p>
+    <i class="fab fa-facebook"></i> 
+    <a href="https://facebook.com/kzoro.206" target="_blank" class="contact-link">facebook.com/kzoro.206</a>
+                </p>
+                <p>
+    <i class="fas fa-mobile-alt"></i> 
+    <a href="tel:0838116815" class="contact-link">0838116815</a>
+                </p>
+                <p><i class="fas fa-map-marker-alt"></i> Quận Gò Vấp, TPHCM</p>
+            </div>
+
+            <div class="section-title">
+                <i class="fas fa-certificate"></i> Chứng Chỉ
+            </div>
+            
+            <div class="cert-info clickable" onclick="openModal('chung-chi-b1.jpg')">
+                B1 Vstep <i class="fas fa-eye" style="margin-left: 8px; font-size: 12px; color: var(--secondary-color);"></i>
+            </div>
+            <div class="cert-info clickable" onclick="openModal('thanh-nien-tien-tien.jpg')">
+                Thanh Niên Tiên Tiến <i class="fas fa-eye" style="margin-left: 8px; font-size: 12px; color: var(--secondary-color);"></i>
+            </div>
+
+            <div class="section-title">
+                <i class="fas fa-tools"></i> Các Kỹ Năng
+            </div>
+            <div class="skills">
+                <ul>
+                    <li>CANVA</li>
+                    <li>WORD</li>
+                    <li>EXCEL</li>
+                    <li>Giao tiếp trước đám đông</li>
+                    <li>Thích nghi với môi trường mới</li>
+                    <li>Thuyết trình</li>
+                    <li>Xem tarot</li>
+                    <li>Content Creator KOC</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="right-col">
+            
+            <div class="content-box">
+                <h3><i class="fas fa-bullseye"></i> Mục Tiêu Nghề Nghiệp</h3>
+                <div class="content-text">
+                    <p>- Hiện nay em đang là sinh viên năm nhất chuyên ngành Kỹ thuật phần mềm - Trường Đại học Công nghiệp Thành phố Hồ Chí Minh. Em mong muốn mình có thể học tập nhiều hơn từ cuộc sống và nhận được nhiều lời chỉ bảo của những anh chị có chuyên môn.</p>
+                    <br>
+                    <p>- Về thời gian lâu dài em hy vọng mình có thể tìm kiếm được một công việc phù hợp và nâng cao được giá trị bản thân và giúp đỡ cho gia đình, xã hội cũng như chính bản thân của mình.</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3><i class="fas fa-graduation-cap"></i> Học Vấn</h3>
+                <div class="content-text">
+                    <p style="font-weight: bold; font-size: 1.1em;">Ngành Công nghệ thông tin/ Chuyên ngành Kỹ thuật phần mềm</p>
+                    <span class="school-name">Trường Đại học Công nghiệp Thành phố Hồ Chí Minh</span>
+                    <span class="time-period">Hiện tại em là sinh viên năm hai .</span>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3><i class="fas fa-user"></i> Đôi Nét Về Bản Thân</h3>
+                <div class="content-text">
+                    <p>Em là một người không ngại khó khăn, có khả năng chịu được áp lực, biết lắng nghe.</p>
+                    <br>
+                    <p>Bản thân em luôn cố gắng học hỏi những điều mới để hoàn thiện qua từng ngày.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+<div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="imgDisplay">
+        <div id="caption"></div>
+    </div>
+
+    <style>
+        /* CSS cho phần chứng chỉ bấm được */
+        .clickable {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .clickable:hover {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        /* CSS cho cái khung cửa sổ (Mặc định là ẩn) */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; /* Nằm đè lên tất cả */
+            padding-top: 60px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.8); /* Màu đen mờ */
+        }
+
+        /* Ảnh bên trong khung */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px; /* Không cho ảnh to quá */
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            animation-name: zoom;
+            animation-duration: 0.4s;
+        }
+
+        /* Hiệu ứng phóng to khi hiện ra */
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+
+        /* Nút đóng (dấu X) */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        // Hàm mở cửa sổ
+        function openModal(imageSrc) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("imgDisplay");
+            
+            modal.style.display = "block"; // Hiện khung lên
+            modalImg.src = imageSrc; // Gán đường dẫn ảnh vào
+        }
+
+        // Hàm đóng cửa sổ
+        function closeModal() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        // Bấm ra ngoài vùng ảnh cũng tự đóng cho tiện
+        window.onclick = function(event) {
+            var modal = document.getElementById("imageModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
